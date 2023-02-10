@@ -83,44 +83,6 @@ public_users.get('/review/:isbn',function (req, res) {
   
 });
 
-const username1 = "BlondLion";
-const username2 = "Micene";
-// BOOK REVIEWS - PROVA UNAUTH
-public_users.put("/review/:isbn", (req, res) => {
-    const isbn = req.params.isbn;
-    let book = books[isbn];
 
-    let userReview = username1;
-
-    if (book) {
-        let signatureReview = req.query.review;
-        if (signatureReview) {
-            books.push({"review " :signatureReview, "by " :userReview});
-            books[isbn] = book;
-            res.send('dovrei aver scritto ' + book["reviews"]);
-        }
-        
-        res.send('You didn not write the review');
-    }
-    else
-    res.send('Qualcosa non va' + book[isbn]);
-});
-
-public_users.put("/reviews/:isbn", (req, res) => {
-    const isbn = req.params.isbn;
-    let book = books[isbn];
-    if (book) {
-        let review = req.query.review;
-        if (review) {
-            book["reviews"] = book["reviews"] + ' , ' + review;
-            books[isbn] = book;
-            res.send('dovrei aver scritto ' + book["reviews"]);
-        }
-        
-        res.send('You didn not write the review');
-    }
-    else
-    res.send('Qualcosa non va' + book[isbn]);
-});
 
 module.exports.general = public_users;
